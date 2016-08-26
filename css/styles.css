@@ -1,9 +1,50 @@
+body {
+  background: #ffffb3;
+  font-family: cursive;
+  font-size: 1.5em;
+}
+
+.container {
+  width: 80%;
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+  font-size: 6em;
+}
+
+.well {
+  background: #fff;
+  margin-top: 25px;
+  padding-bottom: 25px;
+}
+
+#shop {
+  text-align: center;
+}
+
+.checkbox {
+  width: 100px;
+  text-align: left;
+  margin: 10px auto;
+}
+
+#cart {
+  padding-top: 25px;
+}
+
 .radio {
   display: inline-block;
   margin-left: 25px;
 }
 
-#address {
+input[type=radio]:checked {
+  color: red;
+}
+
+#address, #alert {
   display: none;
 }
 
@@ -12,6 +53,28 @@
   text-align: right:
 }
 
+#pizzas h4 {
+  margin-bottom: 0;
+}
+
+.btn.remove {
+  background: #fff;
+  border: none;
+}
+
+.btn.remove:hover {
+  color: red;
+}
+
 #summary {
   padding: 25px 50px;
+  text-align: center;
+}
+
+#summary ul {
+  padding-left: 0;
+}
+
+#summary li {
+  list-style: none;
 }

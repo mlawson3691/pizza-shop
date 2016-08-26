@@ -46,7 +46,7 @@ $(function() {
     currentOrder.price += cost;
     $("#pizzas").append(
       "<li>" +
-        "<h4>" + newPizza.size + " Pizza - $<span>" + cost + "</span>.00<button type='button' class='btn remove'>X</button></h4>" +
+        "<h4>" + newPizza.size + " Pizza - $<span>" + cost + "</span>.00<button type='button' class='btn remove'><span class='glyphicon glyphicon-trash'></span></button></h4>" +
         "<ul class='toppingsDisplay'></ul>" +
       "</li>");
     for (var i = 0; i < newPizza.toppings.length; i++) {
@@ -70,6 +70,7 @@ $(function() {
       delivery = true;
     }
     $(".totalPrice").text(currentOrder.price);
+    $("#delivOrPick").text("delivered");
   });
 
   $("#pickUp").click(function() {
@@ -79,6 +80,7 @@ $(function() {
       delivery = false;
     }
     $(".totalPrice").text(currentOrder.price);
+    $("#delivOrPick").text("ready for pick up");
   });
 
   $("#placeOrder").click(function(event) {
@@ -97,5 +99,5 @@ $(function() {
       }
       $("#summaryList").append("<li>1 " + pizza.size + " Pizza with " + toppings + "</li>");
     });
-  })
+  });
 });
