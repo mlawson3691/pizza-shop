@@ -6,6 +6,10 @@
   var allPizzas = [];
   var currentOrder = new Order(allPizzas, 0);
 
+  Order.prototype.subtract = function(num) {
+    this.price -= num;
+  }
+
   function Pizza(size, toppings) {
     this.size = size;
     this.toppings = toppings;
@@ -40,14 +44,23 @@ $(function() {
     var cost = newPizza.calculate();
     $("#pizzas").append(
       "<li>" +
-        "<h4>" + newPizza.size + " Pizza - $" + cost + ".00</h4>" +
+        "<h4>" + newPizza.size + " Pizza - $<span>" + cost + "</span>.00<button type='button' class='btn remove'>X</button></h4>" +
         "<ul class='toppingsDisplay'></ul>" +
       "</li>");
     for (var i = 0; i < newPizza.toppings.length; i++) {
       $(".toppingsDisplay:last").append("<li>" + newPizza.toppings[i] + "</li>");
     }
     $("#totalPrice").text(currentOrder.price);
+
+    $(".remove").last().click(function() {
+      var thisCost = parseInt($(this).siblings("span").text())
+      currentOrder.subtract(thisCost);
+      $(this).parent().parent().remove();
+      $("#totalPrice").text(currentOrder.price);
+    });
   });
+
+
 
   $("#delivery").click(function() {
     $("#address").slideDown();
