@@ -30,25 +30,25 @@
             <div class="form-group">
               <label>Choose your toppings:</label>
               <div class="checkbox">
-                <label><input type="checkbox" value="cheese" checked>Cheese</label>
+                <label><input type="checkbox" class="topping" value="cheese" id="cheese" checked>Cheese</label>
               </div>
               <div class="checkbox">
-                <label><input type="checkbox" value="pepperoni">Pepperoni</label>
+                <label><input type="checkbox" class="topping" value="pepperoni">Pepperoni</label>
               </div>
               <div class="checkbox">
-                <label><input type="checkbox" value="sausage">Sausage</label>
+                <label><input type="checkbox" class="topping" value="sausage">Sausage</label>
               </div>
               <div class="checkbox">
-                <label><input type="checkbox" value="mushroom">Mushroom</label>
+                <label><input type="checkbox" class="topping" value="mushroom">Mushroom</label>
               </div>
               <div class="checkbox">
-                <label><input type="checkbox" value="onion">Onion</label>
+                <label><input type="checkbox" class="topping" value="onion">Onion</label>
               </div>
               <div class="checkbox">
-                <label><input type="checkbox" value="peppers">Bell Peppers</label>
+                <label><input type="checkbox" class="topping" value="peppers">Bell Peppers</label>
               </div>
               <div class="checkbox">
-                <label><input type="checkbox" value="spinach">Spinach</label>
+                <label><input type="checkbox" class="topping" value="spinach">Spinach</label>
               </div>
             </div>
             <button type="submit" class="btn btn-info" id="addPizza">Add to Order</button>
@@ -90,16 +90,7 @@
                 <input id="zip" type="number" class="form-control" min="1" max="99999">
               </div>
             </div>
-            <ul id="pizzas">
-              <li>
-                <h4>Lg Pizza - $12.00</h4>
-                <ul>
-                  <li>Cheese</li>
-                  <li>Pepperoni</li>
-                  <li>Mushroom</li>
-                </ul>
-              </li>
-            </ul>
+            <ul id="pizzas"></ul>
             <h3>Total: <span id="totalPrice"></span></h3>
             <button type="submit" class="btn btn-info" id="placeOrder">Place Your Order</button>
           </form>

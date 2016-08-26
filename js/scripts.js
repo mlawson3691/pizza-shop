@@ -24,3 +24,32 @@
   }
 
 // USER INTERFACE LOGIC:
+$(function() {
+
+  $("#addPizza").click(function(event) {
+    event.preventDefault();
+    var currentSize = $("input:radio[name=size]:checked").val();
+    var currentToppings = [];
+    $(".topping:checked").each(function() {
+      currentToppings.push($(this).val());
+    });
+    var newPizza = new Pizza(currentSize, currentToppings);
+    $("#pizzas").append(
+      "<li>" +
+        "<h4>" + newPizza.size + " Pizza - $" + newPizza.calculate() + ".00</h4>" +
+        "<ul class='toppingsDisplay'></ul>" +
+      "</li>");
+    for (var i = 0; i < newPizza.toppings.length; i++) {
+      $(".toppingsDisplay:last").append("<li>" + newPizza.toppings[i] + "</li>");
+    }
+
+  });
+
+  $("#delivery").click(function() {
+    $("#address").slideDown();
+  });
+
+  $("#pickUp").click(function() {
+    $("#address").slideUp();
+  });
+});
