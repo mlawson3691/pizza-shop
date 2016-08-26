@@ -1,4 +1,5 @@
 // BUSINESS LOGIC:
+
   function Order(name, pizzas, price) {
     this.name = name;
     this.pizzas = pizzas;
@@ -34,7 +35,9 @@
   }
 
 // USER INTERFACE LOGIC:
+
 $(function() {
+
   $("#addPizza").click(function(event) {
     event.preventDefault();
     var currentSize = $("input:radio[name=size]:checked").val();
