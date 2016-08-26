@@ -2,6 +2,7 @@ body {
   background: #ffffb3;
   font-family: cursive;
   font-size: 1.5em;
+  text-align: center;
 }
 
 .container {
@@ -9,20 +10,21 @@ body {
 }
 
 h1 {
-  text-align: center;
   color: #fff;
   text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
   font-size: 6em;
 }
 
-.well {
-  background: #fff;
-  margin-top: 25px;
-  padding-bottom: 25px;
+.container > hr {
+  margin-top: -15px;
+  border-color: #000;
 }
 
-#shop {
-  text-align: center;
+.well {
+  background: #fff;
+  margin-top: 15px;
+  padding-bottom: 25px;
+  border-color: #000;
 }
 
 .checkbox {
@@ -32,7 +34,7 @@ h1 {
 }
 
 #cart {
-  padding-top: 25px;
+  padding 30px;
 }
 
 .radio {
@@ -40,11 +42,7 @@ h1 {
   margin-left: 25px;
 }
 
-input[type=radio]:checked {
-  color: red;
-}
-
-#address, #alert {
+#address {
   display: none;
 }
 
@@ -53,8 +51,24 @@ input[type=radio]:checked {
   text-align: right:
 }
 
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+}
+
 #pizzas h4 {
+  margin-top: 20px;
   margin-bottom: 0;
+}
+
+#pizzas li li {
+  width: 60px;
+  margin: 0 auto;
+  text-align: left;
+  list-style: circle;
 }
 
 .btn.remove {
@@ -68,13 +82,4 @@ input[type=radio]:checked {
 
 #summary {
   padding: 25px 50px;
-  text-align: center;
-}
-
-#summary ul {
-  padding-left: 0;
-}
-
-#summary li {
-  list-style: none;
 }
