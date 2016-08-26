@@ -1,10 +1,11 @@
 // BUSINESS LOGIC:
-  function Order(pizzas, price) {
+  function Order(name, pizzas, price) {
+    this.name = name;
     this.pizzas = pizzas;
     this.price = price;
   }
   var allPizzas = [];
-  var currentOrder = new Order(allPizzas, 0);
+  var currentOrder = new Order("", allPizzas, 0);
 
   Order.prototype.subtract = function(num) {
     this.price -= num;
@@ -51,16 +52,15 @@ $(function() {
     for (var i = 0; i < newPizza.toppings.length; i++) {
       $(".toppingsDisplay:last").append("<li>" + newPizza.toppings[i] + "</li>");
     }
-    $("#totalPrice").text(currentOrder.price);
+    $(".totalPrice").text(currentOrder.price);
 
     $(".remove").last().click(function() {
       var thisCost = parseInt($(this).siblings("span").text())
       currentOrder.subtract(thisCost);
       $(this).parent().parent().remove();
-      $("#totalPrice").text(currentOrder.price);
+      $(".totalPrice").text(currentOrder.price);
     });
   });
-
 
   var delivery = false;
   $("#delivery").click(function() {
@@ -69,7 +69,7 @@ $(function() {
       currentOrder.price += 3;
       delivery = true;
     }
-    $("#totalPrice").text(currentOrder.price);
+    $(".totalPrice").text(currentOrder.price);
   });
 
   $("#pickUp").click(function() {
@@ -78,6 +78,24 @@ $(function() {
       currentOrder.price -= 3;
       delivery = false;
     }
-    $("#totalPrice").text(currentOrder.price);
+    $(".totalPrice").text(currentOrder.price);
   });
+
+  $("#placeOrder").click(function(event) {
+    event.preventDefault();
+    var toppings;
+    currentOrder.name = $("#name").val();
+    $("#nameFill").text(currentOrder.name);
+    currentOrder.pizzas.forEach(function(pizza) {
+      toppings = "";
+      for (var i = 0; i < pizza.toppings.length; i++) {
+        if (i < pizza.toppings.length-1) {
+          toppings += pizza.toppings[i] + ", ";
+        } else {
+          toppings += "and " + pizza.toppings[i];
+        }
+      }
+      $("#summaryList").append("<li>1 " + pizza.size + " Pizza with " + toppings + "</li>");
+    });
+  })
 });
