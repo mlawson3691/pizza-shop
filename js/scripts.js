@@ -27,7 +27,6 @@
     for (var i = 0; i < this.toppings.length; i++) {
       cost += 1;
     }
-    currentOrder.price += cost;
     return cost;
   }
 
@@ -42,6 +41,8 @@ $(function() {
     });
     var newPizza = new Pizza(currentSize, currentToppings);
     var cost = newPizza.calculate();
+    currentOrder.pizzas.push(newPizza);
+    currentOrder.price += cost;
     $("#pizzas").append(
       "<li>" +
         "<h4>" + newPizza.size + " Pizza - $<span>" + cost + "</span>.00<button type='button' class='btn remove'>X</button></h4>" +
@@ -61,12 +62,22 @@ $(function() {
   });
 
 
-
+  var delivery = false;
   $("#delivery").click(function() {
     $("#address").slideDown();
+    if (delivery === false) {
+      currentOrder.price += 3;
+      delivery = true;
+    }
+    $("#totalPrice").text(currentOrder.price);
   });
 
   $("#pickUp").click(function() {
     $("#address").slideUp();
+    if (delivery === true) {
+      currentOrder.price -= 3;
+      delivery = false;
+    }
+    $("#totalPrice").text(currentOrder.price);
   });
 });
