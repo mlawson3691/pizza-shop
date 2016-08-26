@@ -1,5 +1,6 @@
 body {
-  background: #ffffb3;
+  background-color: #ffffb3;
+  background-image: url("../img/pizza.png");
   font-family: cursive;
   font-size: 1.5em;
   text-align: center;
@@ -48,7 +49,6 @@ h1 {
 
 #address label {
   width: 125px;
-  text-align: right:
 }
 
 ul {
