@@ -9,6 +9,52 @@
     <title>Pizza Shop</title>
   </head>
   <body>
-
+    <div class="container">
+      <h1>Pizza Pizza</h1>
+      <form id="cart">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input id="name" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>This order is for:</label>
+          <div class="radio">
+            <label><input type="radio" id="pickUp" name="deliveryMethod">Pick-Up</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" id="delivery" name="deliveryMethod">Delivery</label>
+          </div>
+        </div>
+        <div id="address">
+          <h4>Where would you like your pizza(s) delivered?</h4>
+          <div class="form-group form-inline">
+            <label for="street">Street Address:</label>
+            <input id="street" type="text" class="form-control">
+          </div>
+          <div class="form-group form-inline">
+            <label for="city">City:</label>
+            <input id="city" type="text" class="form-control">
+          </div>
+          <div class="form-group form-inline">
+            <label for="state">State:</label>
+            <input id="state" type="text" class="form-control" maxlength="2">
+          </div>
+          <div class="form-group form-inline">
+            <label for="zip">Zipcode:</label>
+            <input id="zip" type="number" class="form-control" min="1" max="99999">
+          </div>
+        </div>
+        <ul id="pizzas">
+          <li>
+            <h4>Lg Pizza</h4>
+            <ul>
+              <li>Cheese</li>
+              <li>Pepperoni</li>
+              <li>Mushroom</li>
+            </ul>
+          </li>
+        </ul>
+      </form>
+    </div>
   </body>
 </html>
