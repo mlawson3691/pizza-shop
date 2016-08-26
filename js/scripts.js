@@ -11,7 +11,9 @@
     this.price -= num;
   }
 
-  function Pizza(size, toppings) {
+  var pizzaCounter = 0;
+  function Pizza(id, size, toppings) {
+    this.id = pizzaCounter++;
     this.size = size;
     this.toppings = toppings;
   }
@@ -40,12 +42,12 @@ $(function() {
     $(".topping:checked").each(function() {
       currentToppings.push($(this).val());
     });
-    var newPizza = new Pizza(currentSize, currentToppings);
+    var newPizza = new Pizza(pizzaCounter, currentSize, currentToppings);
     var cost = newPizza.calculate();
-    currentOrder.pizzas.push(newPizza);
     currentOrder.price += cost;
+    currentOrder.pizzas.push(newPizza);
     $("#pizzas").append(
-      "<li>" +
+      "<li id='" + newPizza.id + "'>" +
         "<h4>" + newPizza.size + " Pizza - $<span>" + cost + "</span>.00<button type='button' class='btn remove'><span class='glyphicon glyphicon-trash'></span></button></h4>" +
         "<ul class='toppingsDisplay'></ul>" +
       "</li>");
@@ -55,10 +57,14 @@ $(function() {
     $(".totalPrice").text(currentOrder.price);
 
     $(".remove").last().click(function() {
-      var thisCost = parseInt($(this).siblings("span").text())
+      var thisCost = parseInt($(this).siblings("span").text());
       currentOrder.subtract(thisCost);
-      $(this).parent().parent().remove();
       $(".totalPrice").text(currentOrder.price);
+      var pizzaID = $(this).parent().parent().attr("id");
+      var thisPizza = currentOrder.pizzas.filter(function(pizza){return pizza.id == pizzaID})[0];
+      var index = currentOrder.pizzas.indexOf(thisPizza);
+      currentOrder.pizzas.splice(index,1);
+      $(this).parent().parent().remove();
     });
   });
 
@@ -85,6 +91,7 @@ $(function() {
 
   $("#placeOrder").click(function(event) {
     event.preventDefault();
+    $("#summaryList").empty();
     var toppings;
     currentOrder.name = $("#name").val();
     $("#nameFill").text(currentOrder.name);
