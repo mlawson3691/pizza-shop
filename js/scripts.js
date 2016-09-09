@@ -1,22 +1,21 @@
 // BUSINESS LOGIC:
 
   function Order(name, pizzas, price) {
-    this.name = name;
-    this.pizzas = pizzas;
-    this.price = price;
+    this.name = '';
+    this.pizzas = [];
+    this.price = 0;
   }
-  var allPizzas = [];
-  var currentOrder = new Order("", allPizzas, 0);
 
   Order.prototype.subtract = function(num) {
     this.price -= num;
   }
 
   var pizzaCounter = 0;
-  function Pizza(id, size, toppings) {
+  function Pizza(id, size, toppings, price) {
     this.id = pizzaCounter++;
     this.size = size;
     this.toppings = toppings;
+    this.price = this.calculate();
   }
 
   Pizza.prototype.calculate = function() {
@@ -37,7 +36,7 @@
 // USER INTERFACE LOGIC:
 
 $(function() {
-
+  var currentOrder = new Order();
   $("#addPizza").click(function(event) {
     event.preventDefault();
     var currentSize = $("input:radio[name=size]:checked").val();
@@ -46,12 +45,11 @@ $(function() {
       currentToppings.push($(this).val());
     });
     var newPizza = new Pizza(pizzaCounter, currentSize, currentToppings);
-    var cost = newPizza.calculate();
-    currentOrder.price += cost;
+    currentOrder.price += newPizza.price;
     currentOrder.pizzas.push(newPizza);
     $("#pizzas").append(
       "<li id='" + newPizza.id + "'>" +
-        "<h4>" + newPizza.size + " Pizza - $<span>" + cost + "</span>.00<button type='button' class='btn remove'><span class='glyphicon glyphicon-trash'></span></button></h4>" +
+        "<h4>" + newPizza.size + " Pizza - $<span>" + newPizza.price + "</span>.00<button type='button' class='btn remove'><span class='glyphicon glyphicon-trash'></span></button></h4>" +
         "<ul class='toppingsDisplay'></ul>" +
       "</li>");
     for (var i = 0; i < newPizza.toppings.length; i++) {
